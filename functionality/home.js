@@ -2,8 +2,9 @@ var apiEnd = 'https://www.omdbapi.com/?apikey=c348d59a&'
 var title = "harry";
 var pageNo = 1;
 var totalPage = 86;
-const curpag = document.getElementById("pagenu");
+// import "./../functionality/global";
 
+// let tdata;
 fetch('https://www.omdbapi.com/?s=harry&apikey=c348d59a&').then((response)=>{
     if(!response.ok){
         throw new Error("Request failed");
@@ -59,8 +60,27 @@ function viewer(data){
 
 const searcicon= document.getElementById("searcicon");
 const srcbox = document.getElementById("srcbox");
+
 searcicon.addEventListener('click',(e)=>{
-    title = srcbox.value;
+    const url = apiEnd + "s=" + srcbox.value + "&" ;
+    fetch(url).then((response)=>{
+        if(!response.ok){
+                throw new Error("Request failed");
+            }
+            return response.json();}).then((res)=>{
+                pageNo = 1;
+                curpag.value = 1;
+                title = srcbox.value;
+                srcbox.value = "";
+                totalPage = Math.ceil(Number(res["totalResults"])/10);
+                viewer(res["Search"]);}).catch((error)=>{
+                    homerevoke();
+                console.log("Error:",error.message);});
+});
+
+function homerevoke(){
+    srcbox.value = "";
+    title = "harry";
     pageNo = 1;
     const url = apiEnd + "s=" + title + "&" ;
     fetch(url).then((response)=>{
@@ -68,8 +88,38 @@ searcicon.addEventListener('click',(e)=>{
                 throw new Error("Request failed");
             }
             return response.json();}).then((res)=>{
+                curpag.value = 1;
                 totalPage = Math.ceil(Number(res["totalResults"])/10);
                 viewer(res["Search"]);}).catch((error)=>{
                 console.log("Error:",error.message);});
-});
+}
 
+// console.log(tdata);
+document.body.addEventListener('click',(e)=>{
+    
+    if(e.target.parentElement.className === 'datacontent')
+    {   
+        imdbid = e.target.parentElement.id;     
+        url = 'https://www.omdbapi.com/?apikey=c348d59a&' + "i=" + imdbid + "&";
+        fetch(url).then((response)=>{
+            if(!response.ok){
+                    throw new Error("Request failed");
+                }
+                return response.json();}).then((res)=>{
+                tdata = res;
+                sameTab()}).catch((error)=>{
+                    console.log("Error:",error.message);});
+    }
+})
+
+function sameTab(){
+    // console.log(data);
+    // imagepart = document.createElement("div");
+    // imagepart.className = "imagepart";
+    // img = document.createElement("img");
+    // img.src = data["Poster"];
+    // picdetail.innerHTML = "";
+    var eve =  window.open('./../htmlComponents/lookup.html',"_self");
+    eve.details = tdata;
+    console.log(eve);
+}
