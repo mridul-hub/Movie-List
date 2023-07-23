@@ -24,6 +24,7 @@
 }
 .metadetail {
   color: white;
-  font-weight: 200;
-  font-size: 18px;
+  padding: 5px;
+  font-weight: 100;
+  font-size: 12px;
 }

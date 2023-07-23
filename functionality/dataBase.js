@@ -10,5 +10,6 @@ openRequest.addEventListener("error",(e)=>{
 })
 openRequest.addEventListener("upgradeneeded",(e)=>{
     console.log("upgrading");
+    db.createObjectStore("data",{ keyPath:"id" });
     db = openRequest.result;
 })

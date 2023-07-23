@@ -95,6 +95,7 @@ function homerevoke(){
 }
 
 // console.log(tdata);
+let tdata;
 document.body.addEventListener('click',(e)=>{
     
     if(e.target.parentElement.className === 'datacontent')
@@ -106,20 +107,14 @@ document.body.addEventListener('click',(e)=>{
                     throw new Error("Request failed");
                 }
                 return response.json();}).then((res)=>{
-                tdata = res;
-                sameTab()}).catch((error)=>{
+                    tdata = res;
+                    localStorage.clear();
+                    localStorage.setItem("detail",JSON.stringify(res));
+                sameTab();}).catch((error)=>{
                     console.log("Error:",error.message);});
     }
 })
 
 function sameTab(){
-    // console.log(data);
-    // imagepart = document.createElement("div");
-    // imagepart.className = "imagepart";
-    // img = document.createElement("img");
-    // img.src = data["Poster"];
-    // picdetail.innerHTML = "";
     var eve =  window.open('./../htmlComponents/lookup.html',"_self");
-    eve.details = tdata;
-    console.log(eve);
 }
