@@ -19,24 +19,26 @@
                     <p>OMDb</p>
                 </div>
                 <div class = "search">
-                    <img onclick = "invokesearch()" id = "searcicon" src = "./../images/search-icon.jpg">
-                    <button id = "home" class = "home-but">Home</button>
+                    <button onclick = "movehome()" id = "home" class = "home-but">Home</button>
                 </div>
             </div>
         </div>
-        <div class = "picdetail">
+        <div class = "picdetail" id = "picdetail">
             <div class="imagepart">
                 <img src ="https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg">
             </div>
             <div class="detailpart">
                 <p class = "imgdetail">Check</p>
                 <p class = "metadetail">Title| Year | Type</p>
+                <p class = "metadetail">yoyo</p>
             </div>
         </div>
     </div>
     <script src="./../functionality/dataBase.js"></script>
-    <script src = "./../functionality/home.js"></script>
-    <script src = "./../functionality/pagenation.js"></script>
+    <!-- <script src = "./../functionality/home.js"></script> -->
+    <script src = "./../functionality/lookup.js"></script>
+    <script src = "./../functionality/global.js"></script>
+    <!-- <script src = "./../functionality/pagenation.js"></script> -->
     <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.js"></script>
 </body>
 </html>

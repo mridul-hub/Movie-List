@@ -1,4 +1,4 @@
-const curpag = document.getElementById("pagenu");
+let curpag = document.getElementById("pagenu");
 
 function prevpage(){
     if(curpag.value<=1)
